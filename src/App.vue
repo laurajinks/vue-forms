@@ -9,12 +9,11 @@
           <!-- Mail -->
           <!-- Password -->
           <!-- Store Data? Yes/No -->
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" v-model="userData.fullName">
+          <FullName v-model="fullName"/>
           <label for="email">Email</label>
-          <input type="text" id="email" v-model="userData.email">
+          <input type="text" id="email" v-model="email">
           <label for="password">Password</label>
-          <input type="password" id="password" v-model="userData.password">
+          <input type="password" id="password" v-model="password">
           <div>
             <label for="Yes">
               <input type="radio" id="yes" value="Yes" v-model="storeData"> Yes
@@ -23,7 +22,7 @@
               <input type="radio" id="no" value="No" v-model="storeData"> No
             </label>
           </div>
-          <button @click.prevent="submitForm">Submit</button>
+          <button type="submit" @click.prevent="submitForm">Submit</button>
           <!-- Exercise 2 -->
           <!-- Only display the Form if it has NOT been submitted -->
           <!-- Display the Data Summary ONCE the Form HAS been submitted -->
@@ -41,9 +40,9 @@
             <h4>Your Data</h4>
           </div>
           <div class="panel-body">
-            <p>Full Name: {{ userData.fullName }}</p>
-            <p>Mail: {{ userData.email }}</p>
-            <p>Password: {{ userData.password }}</p>
+            <p>Full Name: {{ fullName }}</p>
+            <p>Mail: {{ email }}</p>
+            <p>Password: {{ password }}</p>
             <p>Store in Database?: {{ storeData }}</p>
           </div>
         </div>
@@ -53,14 +52,13 @@
 </template>
 
 <script>
+import FullName from "./components/FullName";
 export default {
   data() {
     return {
-      userData: {
-        fullName: "",
-        email: "",
-        password: ""
-      },
+      fullName: "Laura Jimenez",
+      email: "",
+      password: "",
       storeData: "No",
       formSubmitted: false
     };
@@ -69,6 +67,9 @@ export default {
     submitForm() {
       this.formSubmitted = true;
     }
+  },
+  components: {
+    FullName
   }
 };
 </script>
